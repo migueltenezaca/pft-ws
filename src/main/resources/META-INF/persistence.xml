@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="pftPU" transaction-type="JTA">
+    <jta-data-source>java/testMysql</jta-data-source>
+    <class>edu.utpl.pft.entity.PftAproEstado</class>
+    <class>edu.utpl.pft.entity.PftAprobacion</class>
+    <class>edu.utpl.pft.entity.PftCompetencias</class>
+    <class>edu.utpl.pft.entity.PftComponentesDesarrollo</class>
+    <class>edu.utpl.pft.entity.PftDepartamento</class>
+    <class>edu.utpl.pft.entity.PftEntregable</class>
+    <class>edu.utpl.pft.entity.PftEntregableProblema</class>
+    <class>edu.utpl.pft.entity.PftEntregableRiesgo</class>
+    <class>edu.utpl.pft.entity.PftHistorialCambios</class>
+    <class>edu.utpl.pft.entity.PftModalidad</class>
+    <class>edu.utpl.pft.entity.PftNivelAcademico</class>
+    <class>edu.utpl.pft.entity.PftNivelCompetencia</class>
+    <class>edu.utpl.pft.entity.PftPersona</class>
+    <class>edu.utpl.pft.entity.PftPlanificacion</class>
+    <class>edu.utpl.pft.entity.PftPlanificacionEntregable</class>
+    <class>edu.utpl.pft.entity.PftProblema</class>
+    <class>edu.utpl.pft.entity.PftPrograma</class>
+    <class>edu.utpl.pft.entity.PftProyecto</class>
+    <class>edu.utpl.pft.entity.PftProyectoCompetencia</class>
+    <class>edu.utpl.pft.entity.PftProyectoComponentes</class>
+    <class>edu.utpl.pft.entity.PftRiesgo</class>
+    <class>edu.utpl.pft.entity.PftRol</class>
+    <class>edu.utpl.pft.entity.PftSeccion</class>
+    <class>edu.utpl.pft.entity.PftSistemaEstudios</class>
+    <class>edu.utpl.pft.entity.PftTipoCompetencia</class>
+    <class>edu.utpl.pft.entity.PftVariacion</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>

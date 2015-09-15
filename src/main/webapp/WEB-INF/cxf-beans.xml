@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:soap="http://cxf.apache.org/bindings/soap" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+>
+    
+    <import resource="classpath:META-INF/cxf/cxf.xml" />        
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-extension-*.xml " />
+    <!--
+        <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    -->
+    
+    <bean id="myPasswordCallback" class="edu.utpl.pft.encrypt.ServerCallBack"/>    
+        
+    <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/>
+    
+    <!-- wsdlLocation="http://localhost:8080/ptf-ws/ServicePft?wsdl" 
+        <bean id="ServicePft1" class="edu.utpl.pft.ws.ServicePft" />
+    -->
+    <jaxws:endpoint xmlns:tns="http://ws.pft.utpl.edu/" id="servicePft"
+                    implementor="edu.utpl.pft.ws.ServicePft" 
+                    endpointName="tns:ServicePftPort" serviceName="tns:ServicePft"
+                    address="/ServicePft">
+        
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature" />
+        </jaxws:features>
+             
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />            
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+            <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+                <constructor-arg>
+                    <map>
+                        <entry key="user" value="testkey"/>                                    
+                        <entry key="action" value="Encrypt"/>
+                        <entry key="passwordType" value="PasswordText"/>                        
+                        <entry key="decryptionPropFile" value="serverKeystore.properties"/>                        
+                        <entry key="passwordCallbackRef">
+                            <ref bean="myPasswordCallback"/>
+                        </entry>
+                        
+                        <entry key="signatureParts" value="{Element}{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd}Timestamp;{Element}{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
+                        <entry key="encryptionParts" value="{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
+                        <entry key="encryptionSymAlgorithm" value="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                    </map>
+                </constructor-arg>
+            </bean>
+        </jaxws:inInterceptors>
+        
+        <!--
+        <entry key="decryptionParts" value="{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
+        
+        <jaxws:properties>
+            <entry key="ws-security.callback-handler">
+                <ref bean="myPasswordCallback"/>
+            </entry>
+            <entry key="ws-security.encryption.properties" value="serverKeyStore.properties"/>
+            <entry key="ws-security.signature.properties" value="serverKeyStore.properties"/>
+            <entry key="ws-security.encryption.username" value="testkey"/>
+        </jaxws:properties> 
+        -->
+                
+    </jaxws:endpoint>
+</beans>
