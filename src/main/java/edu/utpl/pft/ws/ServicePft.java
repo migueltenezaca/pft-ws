@@ -8,14 +8,11 @@ package edu.utpl.pft.ws;
 import com.google.gson.Gson;
 import edu.utpl.pft.service.PftModalidadService;
 import edu.utpl.pft.service.PftPersonaService;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebParam;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 
 /**
  *
@@ -52,14 +49,14 @@ public class ServicePft implements ServicePftInterface {
      */
     @Override
     public String personaPorCedula(@WebParam(name = "cedula") final String cedula) {
-        Boolean autenticate = autenticar();
+      //  Boolean autenticate = autenticar();
         Gson gson = new Gson();
-        if (autenticate) {
+        //if (autenticate) {
             System.out.println("Se autentico: ");
             return gson.toJson(personaService.buscarPorCedula(cedula));
-        }
+        //}
 
-        return gson.toJson("Error de autenticacion");
+        //return gson.toJson("Error de autenticacion");
     }
 
     @Override
@@ -68,6 +65,7 @@ public class ServicePft implements ServicePftInterface {
         return gson.toJson(pftModalidadService.buscarTodo());
     }
 
+    /*
     private Boolean autenticar() {
         MessageContext messageContext = webServiceContext.getMessageContext();
 
@@ -100,4 +98,5 @@ public class ServicePft implements ServicePftInterface {
         }
 
     }
+    */
 }
