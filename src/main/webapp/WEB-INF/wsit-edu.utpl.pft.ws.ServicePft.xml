@@ -101,7 +101,7 @@
                         </sp:UsernameToken>
                     </wsp:Policy>
                 </sp:SignedEncryptedSupportingTokens>
-                <sc:KeyStore wspp:visibility="private" location="/home/cesar/aplicaciones/KEYS/keystore.jks" type="JKS" storepass="storespass" alias="testkey"/>
+                <sc:KeyStore wspp:visibility="private" location="/home/cesar/glassfish4/glassfish/domains/domain1/config/keystore.jks" type="JKS" storepass="changeit" alias="s1as"/>
             </wsp:All>
         </wsp:ExactlyOne>
     </wsp:Policy>

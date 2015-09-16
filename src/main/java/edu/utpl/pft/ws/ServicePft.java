@@ -18,7 +18,9 @@ import javax.xml.ws.WebServiceContext;
  *
  * @author Miguel Tenezaca
  */
-@WebService(endpointInterface = "edu.utpl.pft.ws.ServicePftInterface", serviceName = "ServicePft")
+
+@WebService(endpointInterface = "edu.utpl.pft.ws.ServicePftInterface", serviceName = "ServicePft",
+        portName = "ServicePftPort" )        
 public class ServicePft implements ServicePftInterface {
 
     @EJB
@@ -49,11 +51,11 @@ public class ServicePft implements ServicePftInterface {
      */
     @Override
     public String personaPorCedula(@WebParam(name = "cedula") final String cedula) {
-      //  Boolean autenticate = autenticar();
+        //  Boolean autenticate = autenticar();
         Gson gson = new Gson();
         //if (autenticate) {
-            System.out.println("Se autentico: ");
-            return gson.toJson(personaService.buscarPorCedula(cedula));
+        System.out.println("Buscar por persona: ");
+        return gson.toJson(personaService.buscarPorCedula(cedula));
         //}
 
         //return gson.toJson("Error de autenticacion");
@@ -66,37 +68,37 @@ public class ServicePft implements ServicePftInterface {
     }
 
     /*
-    private Boolean autenticar() {
-        MessageContext messageContext = webServiceContext.getMessageContext();
+     private Boolean autenticar() {
+     MessageContext messageContext = webServiceContext.getMessageContext();
 
-        //obtiene los headers de la peticion
-        Map<?, ?> requestHeaders = (Map<?, ?>) messageContext.get(MessageContext.HTTP_REQUEST_HEADERS);
-        List<?> usernameList = (List<?>) requestHeaders.get("username");
-        List<?> passwordList = (List<?>) requestHeaders.get("password");
+     //obtiene los headers de la peticion
+     Map<?, ?> requestHeaders = (Map<?, ?>) messageContext.get(MessageContext.HTTP_REQUEST_HEADERS);
+     List<?> usernameList = (List<?>) requestHeaders.get("username");
+     List<?> passwordList = (List<?>) requestHeaders.get("password");
 
-        String username = "";
-        String password = "";
+     String username = "";
+     String password = "";
 
-        if (usernameList != null) {
-            username = usernameList.get(0).toString();
-        }
+     if (usernameList != null) {
+     username = usernameList.get(0).toString();
+     }
 
-        if (passwordList != null) {
-            password = passwordList.get(0).toString();
-        }
+     if (passwordList != null) {
+     password = passwordList.get(0).toString();
+     }
 
-        //Consultar nombre de usuario y password en la db
-        //Sifrar a md5 o Code64
-        if (username.equals("usuario") && password.equals("1234")) {
+     //Consultar nombre de usuario y password en la db
+     //Sifrar a md5 o Code64
+     if (username.equals("usuario") && password.equals("1234")) {
 
-            System.out.println("usuario valido");
-            return Boolean.TRUE;
-        } else {
+     System.out.println("usuario valido");
+     return Boolean.TRUE;
+     } else {
 
-            System.out.println("Usuario no logeado");
-            return Boolean.FALSE;
-        }
+     System.out.println("Usuario no logeado");
+     return Boolean.FALSE;
+     }
 
-    }
-    */
+     }
+     */
 }

@@ -8,7 +8,7 @@
     
     <import resource="classpath:META-INF/cxf/cxf.xml" />        
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-*.xml " />
+    <import resource="classpath:META-INF/cxf/cxf-extension-*.xml" />
     <!--
         <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
     -->
@@ -19,9 +19,10 @@
     
     <!-- wsdlLocation="http://localhost:8080/ptf-ws/ServicePft?wsdl" 
         <bean id="ServicePft1" class="edu.utpl.pft.ws.ServicePft" />
+        wsdlLocation="wsdl/ServicePFT.wsdl"
     -->
-    <jaxws:endpoint xmlns:tns="http://ws.pft.utpl.edu/" id="servicePft"
-                    implementor="edu.utpl.pft.ws.ServicePft" 
+    <jaxws:endpoint xmlns:tns="http://ws.pft.utpl.edu/" id="servicePft_"
+                    implementor="edu.utpl.pft.ws.ServicePft"                     
                     endpointName="tns:ServicePftPort" serviceName="tns:ServicePft"
                     address="/ServicePft">
         
@@ -33,9 +34,9 @@
             <bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />            
             <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
             <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
-                <!--<constructor-arg>
+                <constructor-arg>
                     <map>
-                        <entry key="user" value="testkey"/>                                    
+                        <entry key="user" value="s1as"/>                                    
                         <entry key="action" value="Encrypt"/>
                         <entry key="passwordType" value="PasswordText"/>                        
                         <entry key="decryptionPropFile" value="serverKeystore.properties"/>                        
@@ -47,7 +48,7 @@
                         <entry key="encryptionParts" value="{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
                         <entry key="encryptionSymAlgorithm" value="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
                     </map>
-                </constructor-arg>-->
+                </constructor-arg>
             </bean>
         </jaxws:inInterceptors>
         
