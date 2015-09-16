@@ -33,7 +33,7 @@
             <bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />            
             <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
             <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
-                <constructor-arg>
+                <!--<constructor-arg>
                     <map>
                         <entry key="user" value="testkey"/>                                    
                         <entry key="action" value="Encrypt"/>
@@ -47,7 +47,7 @@
                         <entry key="encryptionParts" value="{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
                         <entry key="encryptionSymAlgorithm" value="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
                     </map>
-                </constructor-arg>
+                </constructor-arg>-->
             </bean>
         </jaxws:inInterceptors>
         
